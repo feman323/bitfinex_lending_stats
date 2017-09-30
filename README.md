@@ -5,10 +5,10 @@ A simple tool for determining statistics about the earnings made by lending cryp
 - Python 3
 - pandas
 - argparse
-- (optional) Flask
+- (Only for the Webapp) Flask
 
 ## Export the Earnings CSV File
-Go to [bitfinex.com](http://bitfinex.com) and export the Earnings CSV file. It can be exported with "Manage Account" / "Reports" / "Funding Earnings".
+Go to [bitfinex.com](http://bitfinex.com) and export the earnings CSV file. It can be exported via "Manage Account" / "Reports" / "Funding Earnings".
 
 ## Command Line Tool
 To use the command line to show the earnings run
