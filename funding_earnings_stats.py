@@ -12,9 +12,7 @@ class FundingEarningsCalculator:
         Constructor.
         :param filepath: The path to the bitfinex earnings csv file.
         """
-
         self.df_earnings = BitfinexCSVParser().parse(filepath)
-
 
     def get_currencies(self):
         """
@@ -45,24 +43,22 @@ class FundingEarningsCalculator:
                     df_currency = df_currency[((df_currency['Currency'] == currency) & (df_currency['year'] == year)) &
                                               (df_currency['month'] == month)]
                     stats = {
-                        cum_amount : df_currency['Amount'].sum(),
-                        min_amount : df_currency['Amount'].min(),
-                        max_amount : df_currency['Amount'].max(),
-                        num_pay : len(df_currency)
+                        cum_amount: df_currency['Amount'].sum(),
+                        min_amount: df_currency['Amount'].min(),
+                        max_amount: df_currency['Amount'].max(),
+                        num_pay: len(df_currency)
                     }
                     df_currency_stats.insert(0, str(year) + "-" + str(month), pd.Series(stats))
 
             alltime_stats = {
-                min_amount: df_currency_stats.loc[[min_amount],:].min(axis=1)[0],
-                max_amount: df_currency_stats.loc[[max_amount],:].max(axis=1)[0],
-                cum_amount: df_currency_stats.loc[[cum_amount],:].sum(axis=1)[0],
-                num_pay: df_currency_stats.loc[[num_pay],:].sum(axis=1)[0]
+                min_amount: df_currency_stats.loc[[min_amount], :].min(axis=1)[0],
+                max_amount: df_currency_stats.loc[[max_amount], :].max(axis=1)[0],
+                cum_amount: df_currency_stats.loc[[cum_amount], :].sum(axis=1)[0],
+                num_pay: df_currency_stats.loc[[num_pay], :].sum(axis=1)[0]
             }
             df_currency_stats.insert(0, "All Time", pd.Series(alltime_stats))
             currency_stats_dict[currency] = df_currency_stats
-
         return currency_stats_dict
-
 
     def get_monthly_earnings(self):
         """
@@ -70,7 +66,6 @@ class FundingEarningsCalculator:
         :return: The dataframe.
         """
         currencies = self.get_currencies()
-
         years = self.df_earnings['year'].unique()
         df_result = pd.DataFrame()
         for year in years:
@@ -85,6 +80,3 @@ class FundingEarningsCalculator:
 
         df_result.insert(0, "All Time", df_result.sum(axis=1))
         return df_result
-
-
-
