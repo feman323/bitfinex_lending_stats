@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  </head>
+
+ <h2>Earnings per month</h2>
+
+  <br>
+  <div class="panel panel-default">
+  {{ monthly_earnings|safe }}
+  </div>
+  <br>
+  <br>
+
+<h2>Earnings by currency</h2>
+
+<br>
+  {% for earnings in currency_stats %}
+  <div class="panel panel-default">
+  <h4> {{ earnings[0] |safe }} </h4>
+  {{ earnings[1] |safe }}
+
+  </div>
+  <br>
+  <br>
+{% endfor %}
